@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- head của Admin -->
+    <% include ../shared/head %>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <title>Trang thêm dữ liệu sinh viên</title>
+</head>
+
+<body>
+    <!-- header của trang Admin -->
+    <% include ../shared/header %>
+    <div id="wrapper">
+        <!-- navigation của Admin -->
+        <% include ../shared/navigation %>
+
+        <div id="content-wrapper">
+            <form action="" method="post">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Tên sinh viên:</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" name="displayname" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Giới tính:</label>
+                        <div class="col-lg-9">
+                            <select class="custom-select" name="gender">
+                                <option value="Nam" selected>Nam</option>
+                                <option value="Nữ">Nữ</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Giới tính:</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="date" name="birthday" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Tọa độ:</label>
+                        <div class="col-lg-9">
+                            <input id="inputgeo" class="form-control" type="text" name="geoJson" required>
+                            <div id="map" style="height: 500px; width: auto; left: 0; top: 0; right: 0; bottom: 0;">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="/admin/students"><button type="button" class="btn btn-danger">Quay lại</button></a>
+                    <button type="submit" class="btn btn-success">Thêm mới</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- footer của admin -->
+        <% include ../shared/footer %>
+    </div>
+
+    <!-- Javascript -->
+    <% include ../shared/Javascripts %>
+    <script>
+        var inputgeo = document.getElementById('inputgeo');
+        var map = L.map('map').setView([10.980374983604175, 106.6554205197723], 15);
+        L.tileLayer('https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=xmOd1dPIjOuHfYuGhLCI', {
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>' +
+                '<a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+        }).addTo(map);
+        var marker = L.marker([0, 0]);
+        map.on('click', function (e) {
+            map.removeLayer(marker);
+            marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+            inputgeo.value = [e.latlng.lat, e.latlng.lng];
+        })
+        inputgeo.addEventListener('keyup', function (event) {
+            let str = inputgeo.value;
+            map.removeLayer(marker);
+            marker = L.marker([str.split(',')[0], str.split(',')[1]]).addTo(map);
+        })
+    </script>
+</body>
+
+</html>

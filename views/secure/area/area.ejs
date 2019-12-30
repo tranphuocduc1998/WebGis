@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- head của Admin -->
+    <% include ../shared/head %>
+    <title>Trang khu vực</title>
+</head>
+
+<body id="page-top">
+    <!-- header của trang Admin -->
+    <% include ../shared/header %>
+    <div id="wrapper">
+        <!-- navigation của Admin -->
+        <% include ../shared/navigation %>
+
+        <div id="content-wrapper">
+            <!-- main của trang Admin -->
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Trang Khu vực</a>
+                </li>
+                <a href="#" class="mt-auto ml-auto"><button class="btn btn-primary">Thêm mới</button></a>
+            </ol>
+            <div class="p-3">
+                <table class="table table-striped border border-primary">
+                    <tdead>
+                        <tr class="table-primary">
+                            <!-- danh mục hiển tdị -->
+                            <% for (const danhmuc of arrdanhmuc){ %>
+                            <th>
+                                <%= danhmuc %>
+                            </th>
+                            <% }; %>
+                        </tr>
+                    </tdead>
+                    <tbody id="tbodyId">
+                        <% area.forEach(element => { %>
+                        <tr>
+                            <td><%=element.gid %></td>
+                            <td><%=element.tenphuong %></td>
+                            <td><%=element.geom.slice(0,10) %>...</td>
+                            <td>
+                                <a href="/admin/area/<%=element.gid%>"><button type="button"
+                                        class="btn btn-primary">Xem</button></a>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <!-- footer của admin -->
+        <% include ../shared/footer %>
+    </div>
+
+    <!-- Javascript -->
+    <% include ../shared/Javascripts %>
+</body>
+
+</html>

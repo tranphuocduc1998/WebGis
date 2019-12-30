@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- head của Admin -->
+    <% include ../shared/head %>
+    <title>Danh sách tài khoản</title>
+</head>
+
+<body id="page-top">
+    <!-- header của trang Admin -->
+    <% include ../shared/header %>
+    <div id="wrapper">
+        <!-- navigation của Admin -->
+        <% include ../shared/navigation %>
+
+        <div id="content-wrapper">
+            <!-- main của trang Admin -->
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Danh sách tài khoản</a>
+                </li>
+                <button type="button" class="btn btn-primary mt-auto ml-auto" data-toggle="modal"
+                    data-target="#addAccount">
+                    Thêm
+                    mới
+                </button>
+            </ol>
+
+            <div class="p-3">
+                <table class="table table-striped border border-primary">
+                    <tdead>
+                        <tr class="table-primary">
+                            <!-- danh mục hiển tdị -->
+                            <% for (const danhmuc of arrdanhmuc){ %>
+                            <th>
+                                <%= danhmuc %>
+                            </th>
+                            <% }; %>
+                        </tr>
+                    </tdead>
+                    <tbody id="tbodyId">
+                        <% accounts.forEach(element => { %>
+                        <tr>
+                            <td><%=element.username %></td>
+                            <td><%=element.password %></td>
+                            <td><%=element.role %></td>
+                            <td>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#edit<%=element._id%>">
+                                    Sửa
+                                </button>
+                                <button type="button" class="btn btn-danger mt-auto" data-toggle="modal"
+                                    data-target="#del<%=element._id%>">
+                                    Xóa
+                                </button>
+                            </td>
+                            <!-- Modal Sửa -->
+                            <div class="modal fade" id="edit<%=element._id%>" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Sửa thông tin tài khoản</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="account/edit/<%=element._id%>" method="post">
+                                            <div class="modal-body">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-3 col-form-label form-control-label">Mật
+                                                        Khẩu:</label>
+                                                    <div class="col-lg-9">
+                                                        <input class="form-control" type="password" name="edpw"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Thoát</button>
+                                                <button type="submit" class="btn btn-primary">Đúng rồi sửa đi!</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal xóa -->
+                            <div class="modal fade" id="del<%=element._id%>" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Hỏi Lại Cho Chắc!</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Bạn Có Thật Sự Muốn Xóa Nội Dung Này?????????
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Không
+                                                nha</button>
+                                            <a href="/admin/account/del/<%=element._id%>"><button type="button"
+                                                    class="btn btn-primary">Đúng rồi!</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <% include ./modal %>
+    <!-- footer của admin -->
+    <% include ../shared/footer %>
+    </div>
+
+    <!-- Javascript -->
+    <% include ../shared/Javascripts %>
+    <% if(err.length>=1){ %>
+    <%-err[0]%>
+    <%}%>
+</body>
+
+</html>

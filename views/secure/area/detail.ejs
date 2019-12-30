@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- head của Admin -->
+    <% include ../shared/head %>
+    <title>Trang chi tiết khu vực</title>
+</head>
+
+<body id="page-top">
+    <!-- header của trang Admin -->
+    <% include ../shared/header %>
+    <div id="wrapper">
+        <!-- navigation của Admin -->
+        <% include ../shared/navigation %>
+
+        <div id="content-wrapper">
+            <!-- main của trang Admin -->
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Trang Chi tiết Khu vực </a>
+                </li>
+                <a href="/admin/new/tour" class="mt-auto ml-auto"><button class="btn btn-primary">Thêm mới</button></a>
+            </ol>
+
+
+
+            <div class="p-3">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Thông tin khu
+                            vực</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Chỉnh Sửa thông tin</a>
+                    </li>
+                </ul>
+                <div class="tab-content py-4">
+                    <div class="tab-pane active" id="profile">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5 class="mb-3">Mã khu vực: </h5>
+                                <p><%=area.gid%></p>
+                                <h5 class="mb-3">Tên khu vực: </h5>
+                                <p><%=area.tenphuong%></p>
+                                <h5 class="mb-3">Tọa độ (geometry):</h5>
+                                <p style="word-break: break-all;"><%=area.geom%></p>
+                            </div>
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <div class="tab-pane" id="edit">
+                        <form action="" role=" form" method="POST">
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Mã khu vực:</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" name="gid" value="<%=area.gid%>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Tên khu vực:</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" name="tenphuong"
+                                        value="<%=area.tenphuong%>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Tọa độ (geometry)</label>
+                                <div class="col-lg-9">
+                                    <textarea name="geometryArea" cols="100" rows="10"><%=area.geom%></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                    <input type="reset" class="btn btn-secondary" value="Thoát">
+                                    <input type="submit" class="btn btn-primary" value="Lưu">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer của admin -->
+        <% include ../shared/footer %>
+    </div>
+
+    <!-- Javascript -->
+    <% include ../shared/Javascripts %>
+</body>
+
+</html>

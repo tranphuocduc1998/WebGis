@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- head của Admin -->
+    <% include ./shared/head %>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-search@2.3.7/dist/leaflet-search.src.css" />
+    <script src="https://unpkg.com/leaflet-search@2.3.7/dist/leaflet-search.src.js"></script>
+
+    <script src="http://labs.easyblog.it/maps/leaflet-search/examples/data/restaurant.geojson.js"></script>
+    <title>Trang admin</title>
+</head>
+
+<body id="page-top">
+    <!-- header của trang Admin -->
+    <% include ./shared/header %>
+    <div id="wrapper">
+        <!-- navigation của Admin -->
+        <% include ./shared/navigation %>
+
+        <div id="content-wrapper" style="padding: 0;">
+            <!-- main của trang Admin -->
+            <div id="map" style="height: 100%; width: 100%; left: 0; top: 0; right: 0; bottom: 0;">
+
+            </div>
+        </div>
+
+        <!-- footer của admin -->
+        <% include ./shared/footer %>
+    </div>
+
+    <!-- Javascript -->
+    <% include ./shared/Javascripts %>
+    <script src="https://www.promisejs.org/polyfills/promise-6.1.0.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="/javascripts/javascript.js"></script>
+    <script type="text/javascript" src="/javascripts/icon.js"></script>
+    <script type="text/javascript" src="/javascripts/db.js"></script>
+</body>
+
+</html>

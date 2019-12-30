@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- head của Admin -->
+    <% include ../shared/head %>
+    <title>Danh sách sinh viên</title>
+</head>
+
+<body id="page-top">
+    <!-- header của trang Admin -->
+    <% include ../shared/header %>
+    <div id="wrapper">
+        <!-- navigation của Admin -->
+        <% include ../shared/navigation %>
+
+        <div id="content-wrapper">
+            <!-- main của trang Admin -->
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Địa điểm sinh viên</a>
+                </li>
+                <a href="/admin/students/new" class="mt-auto ml-auto"><button type="button" class="btn btn-primary">Thêm
+                        mới</button></a>
+            </ol>
+
+            <div class="p-3">
+                <table class="table table-striped border border-primary">
+                    <tdead>
+                        <tr class="table-primary">
+                            <!-- danh mục hiển tdị -->
+                            <% for (const danhmuc of arrdanhmuc){ %>
+                            <th>
+                                <%= danhmuc %>
+                            </th>
+                            <% }; %>
+                        </tr>
+                    </tdead>
+                    <tbody id="tbodyId">
+                        <% students.forEach(element => { %>
+                        <tr>
+                            <td><%=element.displayname %></td>
+                            <td><%=element.gender %></td>
+                            <td><%=element.birthday %></td>
+                            <td><%=element.age %></td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#aa<%=element.gid%>">
+                                    Xóa
+                                </button>
+                            </td>
+                            <% include ./Modal%>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer của admin -->
+    <% include ../shared/footer %>
+    </div>
+
+    <!-- Javascript -->
+    <% include ../shared/Javascripts %>
+</body>
+
+</html>
