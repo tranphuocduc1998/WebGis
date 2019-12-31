@@ -17,7 +17,6 @@ router.get('/', async function (req, res, next) {
 /* GET Detail page. */
 router.get('/:areaId', async function (req, res, next) {
     const area = await db.query(`SELECT * FROM vungranhgioiphuongtxtdm_region where gid = ${req.params.areaId}`);
-    console.log(area.rows[0].tenphuong);
     const doccument = {
         area: area.rows[0],
     };
@@ -27,8 +26,7 @@ router.get('/:areaId', async function (req, res, next) {
 /* POST Detail page. */
 router.post('/:areaId', async function (req, res, next) {
     const query = `UPDATE vungranhgioiphuongtxtdm_region
-    SET tenphuong = '${req.body.tenphuong}',
-        geom = '${req.body.geometryArea}'
+    SET tenphuong = '${req.body.tenphuong}'
     WHERE
        gid = ${req.params.areaId};`;
     await db.query(query);

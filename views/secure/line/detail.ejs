@@ -21,7 +21,7 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Trang Chi tiết Khu vực </a>
+                    <a href="#">Trang Chi tiết Đường</a>
                 </li>
             </ol>
 
@@ -39,10 +39,10 @@
                     <div class="tab-pane active" id="profile">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="mb-3">Mã khu vực: </h5>
-                                <p id='areGid'><%=area.gid%></p>
-                                <h5 class="mb-3">Tên khu vực: </h5>
-                                <p><%=area.tenphuong%></p>
+                                <h5 class="mb-3">Mã đường: </h5>
+                                <p id='lineGid'><%=line.gid%></p>
+                                <h5 class="mb-3">Tên đường: </h5>
+                                <p><%=line.tenduong%></p>
                                 <h5 class="mb-3">Tọa độ (geometry):</h5>
                                 <div class="col-md-12" style="height: 500px;">
                                     <div id="map"
@@ -57,16 +57,16 @@
                     <div class="tab-pane" id="edit">
                         <form action="" role=" form" method="POST">
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Mã khu vực:</label>
+                                <label class="col-lg-3 col-form-label form-control-label">Mã đường:</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" name="gid" value="<%=area.gid%>" readonly>
+                                    <input class="form-control" type="text" name="gid" value="<%=line.gid%>" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Tên khu vực:</label>
+                                <label class="col-lg-3 col-form-label form-control-label">Tên đường:</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" name="tenphuong"
-                                        value="<%=area.tenphuong%>">
+                                    <input class="form-control" type="text" name="tenduong"
+                                        value="<%=line.tenduong%>">
                                 </div>
                             </div>
 
@@ -90,7 +90,7 @@
     <% include ../shared/javascripts %>
     <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        var areGid = document.getElementById('areGid');
+        var lineGid = document.getElementById('lineGid');
         var map = L.map('map').setView([10.980374983604175, 106.6554205197723], 12);
         L.tileLayer('https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=xmOd1dPIjOuHfYuGhLCI', {
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>' +
@@ -122,7 +122,7 @@
             }).addTo(map);
         };
 
-        axios.get('/api/area/' + areGid.innerText).then(doc => {
+        axios.get('/api/line/' + lineGid.innerText).then(doc => {
             loadGeoJSON(doc.data);
         });
     </script>

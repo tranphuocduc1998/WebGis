@@ -90,6 +90,7 @@ var loadGeoJSONStudents = function (params) {
 //Get khu vực thủ dầu một
 axios.get('/api/area').then(doc => {
     var item = [];
+    console.log(doc.data)
     item.push(loadGeoJSON(doc.data));
     var lg_PolygonTDM = L.layerGroup(item).addTo(map);
     controlLayers('Khu vực Thủ Dầu Một', lg_PolygonTDM);

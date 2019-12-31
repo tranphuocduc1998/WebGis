@@ -13,8 +13,9 @@ var studentsAPI = require('./api/routes/students.route');
 var loginAdmin = require('./routes/secure/login.route');
 var indexAdmin = require('./routes/secure/index.route');
 var areaAdmin = require('./routes/secure/area.route');
+var lineAdmin = require('./routes/secure/line.route');
 var studentsAdmin = require('./routes/secure/students.route');
-var accountAdmin =require('./routes/secure/account.route');
+var accountAdmin = require('./routes/secure/account.route');
 var indexRouter = require('./routes/index');
 
 var app = express();
@@ -37,6 +38,7 @@ app.use('/', indexRouter);
 app.use('/signin', loginAdmin);
 app.use('/admin', indexAdmin);
 app.use('/admin/area', areaAdmin);
+app.use('/admin/line', lineAdmin);
 app.use('/admin/students', studentsAdmin);
 app.use('/admin/account', accountAdmin);
 

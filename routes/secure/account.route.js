@@ -30,7 +30,6 @@ router.post('/', async function (req, res, next) {
             accounts: accounts.rows,
             err: err,
         };
-        console.log(doccument.err);
         res.render('secure/account/index', doccument);
         return;
     }

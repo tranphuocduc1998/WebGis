@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/connectPg');
 
-router.use('/', function (req, resquest, next) {
+router.get('/', function (req, resquest, next) {
     db.query('SELECT *, ST_AsGeoJSON(geom, 15) as geojson FROM Students', (err, res) => {
         const rows = res.rows;
         resquest.status(200).json({
@@ -20,8 +20,5 @@ router.use('/', function (req, resquest, next) {
         });
     });
 });
-
-
-
 
 module.exports = router;
